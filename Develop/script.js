@@ -40,7 +40,7 @@ function generatePassword(){
 
 //conditional statement. Generator fails if  all 4 variables avaluate to false
 if(
-  [hasSpecialCharacters,hasNumbers,hasLowerCase,hasUperCase].includes(
+  [hasSpecialCharacters,hasNumbers,hasLowerCase,hasUpperCase].includes(
     true
   )
 ) 
@@ -53,43 +53,68 @@ if(hasSpecialCharacters){
   chosenChar = chosenChar.concat(specialCharacter);
   guaranteeedChar.push(
     specialCharacter[
-      Math.floor(Math.random()* specialCharacter.length);
+      Math.floor(Math.random()* specialCharacter.length)
     ]
-  )
+  );
 }
 
-if(hasNumbers){
+if (hasNumbers) {
   chosenChar = chosenChar.concat(numericCharacters);
   guaranteeedChar.push(
-    numericCharacters[
-      Math.floor(Math.random()* numericCharacters.length);
-    ]
-  )
+    numericCharacters[Math.floor(Math.random() * numericCharacters.length)]
+  );
 }
+
 if(hasLowerCase){
   chosenChar = chosenChar.concat(lowerCasedCharacters);
   guaranteeedChar.push(
     lowerCasedCharacters[
-      Math.floor(Math.random()* lowerCasedCharacters.length);
+      Math.floor(Math.random()* lowerCasedCharacters.length)
     ]
-  )
+  );
 }
 if(hasUpperCase){
   chosenChar = chosenChar.concat(upperCasedCharacters);
   guaranteeedChar.push(
     upperCasedCharacters[
-      Math.floor(Math.random()* upperCasedCharacters.length);
+      Math.floor(Math.random()* upperCasedCharacters.length)
     ]
-  )
+  );
 }
+// adding a for loop to select random arrays in the password length
+var randomChar = [];
+for (var i = 0; i < userNumCharacers; i++) {
+  var index = Math.floor(Math.random() * chosenChar.length);
+  randomChar.push(chosenChar[index]);
+}
+var replacedPosition = {};
+//While loop to ensure an index position that has already been replaced with a guaranteed character is not replaced with another guaranteed character.
+while (guaranteeedChar.length > 0) {
+  var replaceChar = Math.floor(Math.random() * randomChar.length);
+  if (!replacedPosition[replaceChar]) {
+    randomChar[replaceChar] = guaranteeedChar.pop();
+    replacedPosition[replaceChar] = true;
+  }
+}
+return randomChar.join("");
+}
+
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
 
 
   
-  
 
- 
-}
 
 
 
@@ -188,19 +213,3 @@ var lowerCasedCharacters = [
 var numericCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 
-
-var passwordLength = 
-
-
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
