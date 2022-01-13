@@ -35,11 +35,56 @@ function generatePassword(){
     );
     var hasNumbers= confirm("Click OK to confirm adding numbers.");
     var hasLowerCase= confirm("Click OK to confirm adding lower case characters");
-    var hasUperCase=confirm("Click OK to confirm adding upper case characters ");
+    var hasUpperCase=confirm("Click OK to confirm adding upper case characters ");
   }
+
+//conditional statement. Generator fails if  all 4 variables avaluate to false
+if(
+  [hasSpecialCharacters,hasNumbers,hasLowerCase,hasUperCase].includes(
+    true
+  )
+) 
 // arrays to store typer of characters
   var chosenChar=[];
   var guaranteeedChar=[];
+
+//conditional statements with random character picking
+if(hasSpecialCharacters){
+  chosenChar = chosenChar.concat(specialCharacter);
+  guaranteeedChar.push(
+    specialCharacter[
+      Math.floor(Math.random()* specialCharacter.length);
+    ]
+  )
+}
+
+if(hasNumbers){
+  chosenChar = chosenChar.concat(numericCharacters);
+  guaranteeedChar.push(
+    numericCharacters[
+      Math.floor(Math.random()* numericCharacters.length);
+    ]
+  )
+}
+if(hasLowerCase){
+  chosenChar = chosenChar.concat(lowerCasedCharacters);
+  guaranteeedChar.push(
+    lowerCasedCharacters[
+      Math.floor(Math.random()* lowerCasedCharacters.length);
+    ]
+  )
+}
+if(hasUpperCase){
+  chosenChar = chosenChar.concat(upperCasedCharacters);
+  guaranteeedChar.push(
+    upperCasedCharacters[
+      Math.floor(Math.random()* upperCasedCharacters.length);
+    ]
+  )
+}
+
+
+
   
   
 
