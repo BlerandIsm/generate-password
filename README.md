@@ -1,4 +1,4 @@
-# Generate Password
+# Generate Password https://blerandism.github.io/generate-password/
 - This program will generate a random password after getting the input form user
 To make this possible I used a combination of HTML CSS and JAVASCRIP language. 
 HTML and CSS were the back supporter language for the layout and JAVASCIPT made the logic possible.
